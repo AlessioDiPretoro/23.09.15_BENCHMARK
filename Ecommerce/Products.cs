@@ -7,7 +7,9 @@ namespace Ecommerce
 {
     public class CartItem
     {
-        public static List<CartItem> cartList = new List<CartItem>();
+        //public static List<CartItem> cartList = new List<CartItem>();
+        public List<CartItem> cartList = new List<CartItem>();
+
         public int quantity { get; set; }
 
         public Products Products { get; set; }

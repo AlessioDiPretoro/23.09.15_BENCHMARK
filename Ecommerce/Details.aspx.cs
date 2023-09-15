@@ -15,6 +15,11 @@ namespace Ecommerce
             if (!IsPostBack)
             {
                 Products thisP = new Products();
+                if (Request.QueryString["idDetails"] == null || Request.QueryString["idDetails"] == "0")
+                {
+                    Response.Redirect("Default.aspx");
+                }
+
                 int id = Convert.ToInt16(Request.QueryString["idDetails"]);
                 foreach (Products p in Products.productList)
                 {
@@ -23,10 +28,6 @@ namespace Ecommerce
                         thisP = p;
                         break;
                     }
-                    // else
-                    // {
-                    //     Response.Write("articolo non trovato");
-                    // }
                 }
                 img.Src = $"/Content/img/{thisP.Code}.jpg";
                 price.InnerHtml = thisP.Price.ToString("C2");
@@ -48,10 +49,10 @@ namespace Ecommerce
                 }
             }
             int qty = int.Parse(DropDownList1.SelectedItem.Value);
-            // List<CartItem> list = (List<CartItem>)Session["cartList"];
-            // list.Add(new CartItem(qty, chosenP));
-            // Session["cartList"] = list;
-            CartItem.cartList.Add(new CartItem(qty, chosenP));
+            List<CartItem> cartList = Session["sessionCart"] as List<CartItem>;
+            cartList.Add(new CartItem(qty, chosenP));
+
+            Session["sessionCart"] = cartList;
             Response.Redirect("Default.aspx");
         }
     }

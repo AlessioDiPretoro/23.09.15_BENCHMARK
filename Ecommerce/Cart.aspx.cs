@@ -15,12 +15,25 @@ namespace Ecommerce
 
             if (!IsPostBack)
             {
-                if (CartItem.cartList.Count > 0)
-                //if (Session["cartList"] != "")
+                if (Session["sessionCart"] == null)
                 {
-                    //GridView1.DataSource = Session["cartList"];
-                    GridView1.DataSource = CartItem.cartList;
+                    //   Response.Write("NO sessione");
+                    List<CartItem> cartListUser = new List<CartItem>();
+                    Session["sessionCart"] = cartListUser;
+                }
+
+                List<CartItem> cartList = Session["sessionCart"] as List<CartItem>;
+
+                if (cartList.Count > 0)
+                {
+                    GridView1.DataSource = cartList;
                     GridView1.DataBind();
+                    double tot = 0;
+                    foreach (CartItem c in cartList)
+                    {
+                        tot += c.Products.Price * c.quantity;
+                    }
+                    totalPrice.InnerHtml = $"Totale carrello:{tot.ToString("C2")} ";
                 }
                 else
                 {
@@ -32,8 +45,9 @@ namespace Ecommerce
 
         protected void DeleteAll_Click(object sender, EventArgs e)
         {
-            CartItem.cartList.Clear();
-            //Session["cartList"] = "";
+            List<CartItem> cartList = Session["sessionCart"] as List<CartItem>;
+            cartList.Clear();
+            Session["cartList"] = cartList;
             Response.Redirect("Cart");
         }
 
@@ -42,8 +56,9 @@ namespace Ecommerce
             Button btn = sender as Button;
             GridViewRow gRow = btn.NamingContainer as GridViewRow;
             int i = gRow.RowIndex;
-            CartItem.cartList.RemoveAt(i);
-            //Response.Write($"did");
+            List<CartItem> cartList = Session["sessionCart"] as List<CartItem>;
+            cartList.RemoveAt(i);
+            Session["cartList"] = cartList;
             Response.Redirect("Cart");
         }
     }

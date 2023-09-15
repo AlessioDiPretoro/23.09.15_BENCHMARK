@@ -70,7 +70,9 @@
 
     </asp:GridView>
     <div class="d-flex justify-content-center">
-
+        <b runat="server" id="totalPrice"></b>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
         <p runat="server" id="isEmpty"></p>
         <asp:Button CssClass="btn btn-danger" ID="DeleteAll" runat="server" Text="Svuota carrello" OnClick="DeleteAll_Click" />
     </div>

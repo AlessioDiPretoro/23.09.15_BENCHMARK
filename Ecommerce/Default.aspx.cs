@@ -17,6 +17,16 @@ namespace Ecommerce
                 Repeater1.DataSource = allProducts;
                 Repeater1.DataBind();
             }
+            if (Session["sessionCart"] == null)
+            {
+                //  Response.Write("NO sessione");
+                List<CartItem> cartListUser = new List<CartItem>();
+                Session["sessionCart"] = cartListUser;
+            }
+            else
+            {
+                // Response.Write("OK sessione");
+            }
         }
     }
 }

@@ -13,10 +13,15 @@ namespace Ecommerce
         {
         }
 
-        protected void Application_Start(object sender, EventArgs e)
+        protected void Session_OnStart(object sender, EventArgs e)
         {
-            //  List<CartItem> cartList = new List<CartItem>();
-            //  Session["cartList"] = cartList;
+            // non funziona?
+            //if (Session["sessionCart"] == null)
+            //{
+            //    Response.Write("NO sessione");
+            //    List<CartItem> cartListUser = new List<CartItem>();
+            //    Session["sessionCart"] = cartListUser;
+            //}
         }
     }
 }
