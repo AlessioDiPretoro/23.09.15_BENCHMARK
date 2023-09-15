@@ -8,7 +8,7 @@
         <asp:Repeater ID="Repeater1" runat="server" ItemType="Ecommerce.Products">
             <ItemTemplate>
                 <div class="col-12 col-sm-6 col-md-3  d-flex align-items-stretch">
-                    <div class="card">
+                    <div class="card d-flex" style="width: 18rem;">
                         <div class="d-flex align-items-center justify-content-around">
 
                             <img src="Content/img/<%# Item.Code%>.jpg" style="max-width: 100px; max-height: 150px"
@@ -16,7 +16,7 @@
                             <b class="card-text"><%# Item.Price.ToString("C2") %> </b>
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <p class="card-title flex-grow-1"><%# Item.Name %> </p>
+                            <h5 class="card-title flex-grow-1"><%# Item.Name %> </h5>
                             <a href="Details.aspx?idDetails=<%# Item.Id %> " class="btn btn-primary">Dettagli</a>
                         </div>
                     </div>
