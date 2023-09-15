@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="text-center m-4">Carrello</h1>
-    <asp:GridView ID="GridView1" CssClass="table table-bordered container" runat="server" AutoGenerateColumns="false" ItemType="Ecommerce.CartItem">
+    <asp:GridView ID="GridView1" CssClass="table table-hover table-bordered container text-center " runat="server" AutoGenerateColumns="false" ItemType="Ecommerce.CartItem">
         <Columns>
             <asp:TemplateField>
                 <HeaderTemplate>
@@ -61,7 +61,7 @@
                     <strong>Elimina</strong>
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:Button ID="DeleteThis" runat="server" Text="X" OnClick="DeleteThis_Click" />
+                    <asp:Button ID="DeleteThis" runat="server" Text="X" CssClass="btn btn-danger" OnClick="DeleteThis_Click" />
                     <%--<p id="indextCart" runat="server"><%#DataBinder.Eval(Container, "DataItemIndex")%></p>--%>
                 </ItemTemplate>
 
